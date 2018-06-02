@@ -34,7 +34,7 @@ export default {
       const that = this;
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
+        .createUserWithEmailAndPassword(that.email, that.password)
         .then(user => {
           const profile = firebase.auth().currentUser;
           profile
