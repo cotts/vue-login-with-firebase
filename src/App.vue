@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand">Video Instructor</a>
+      <router-link to="/" class="navbar-brand">Video Instructor</router-link>
       <div class="nav-menu" v-show="userMenu">
         <ul class="nav justify-content-end">
           <li class="nav-item active">
@@ -40,14 +40,19 @@ export default {
         .signOut()
         .then(() => that.$router.go('/'));
     },
-  },
-  watch: {
-    $route(to, from) {
-      console.log(to, from);
+    switchMenu: function() {
       if (firebase.auth().currentUser) {
         this.userMenu = true;
       }
     },
+  },
+  watch: {
+    $route(to, from) {
+      this.switchMenu();
+    },
+  },
+  mounted() {
+    this.switchMenu();
   },
 };
 </script>
