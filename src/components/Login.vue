@@ -28,7 +28,7 @@ export default {
           user => {
             that.$toaster.info('Usuário logado!');
             setTimeout(function() {
-              that.$router.go('/index');
+              that.$router.push('/index');
             }, 1000);
           },
           err => that.$toaster.error('Usuário ou senha incorretos')
