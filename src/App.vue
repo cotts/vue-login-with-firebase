@@ -56,7 +56,6 @@ export default {
   },
   /** check if the value is true or false when the view is mounted */
   mounted() {
-    console.log(process.env.KEY);
     this.switchMenu();
   },
 };
