@@ -11,6 +11,7 @@
       <input class="form-control" type="password" v-model="password" placeholder="Senha">
       <div v-html="validatePass"></div>
       <button class="btn-primary btn-lg btn-block" @click="validateForm">Cadastrar</button>
+      <button class="btn-secondary btn-lg btn-block" @click="goBack">Voltar</button>
 
     </div>
   </div>
@@ -87,6 +88,9 @@ export default {
       ) {
         this.signUp();
       }
+    },
+    goBack: function() {
+      this.$router.go(-1);
     },
   },
 };
