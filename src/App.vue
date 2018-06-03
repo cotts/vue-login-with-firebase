@@ -5,9 +5,6 @@
       <div class="nav-menu" v-show="userMenu">
         <ul class="nav justify-content-end">
           <li class="nav-item active">
-            <router-link to="/profile" class="nav-link">Meus Dados</router-link>
-          </li>
-          <li class="nav-item active">
             <a class="nav-link" @click="logout">Sair</a>
           </li>
         </ul>
@@ -44,10 +41,13 @@ export default {
         .then(() => that.$router.go('/'));
     },
   },
-  mounted() {
-    if (firebase.auth().currentUser) {
-      this.userMenu = true;
-    }
+  watch: {
+    $route(to, from) {
+      console.log(to, from);
+      if (firebase.auth().currentUser) {
+        this.userMenu = true;
+      }
+    },
   },
 };
 </script>
