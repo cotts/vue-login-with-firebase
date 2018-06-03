@@ -56,6 +56,7 @@ export default {
               })
               .then(() => {
                 that.clearForm();
+                firebase.auth().signOut();
                 that.$toaster.success('Usuário Cadastrado');
               });
           },
