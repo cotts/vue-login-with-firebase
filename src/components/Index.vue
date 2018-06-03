@@ -7,8 +7,8 @@
           <h4><span class="badge badge-secondary btn-close" @click="closeVideo" v-show="isSelected">Fechar Vídeo</span></h4>
         </div>
     <div class="content">
-      <div class="card" v-for="(video, id) in videos">
-        <img class="card-img-top" v-bind:src="'http://img.youtube.com/vi/' +video+ '/hqdefault.jpg'" @click="openVideo(video)">
+      <div class="card" v-for="video in videos">
+        <img class="card-img-top" v-bind:src="'//img.youtube.com/vi/' +video+ '/hqdefault.jpg'" @click="openVideo(video)">
       </div>
 
     </div>
@@ -35,7 +35,7 @@ export default {
     openVideo: function(video) {
       this.isSelected = true;
       this.isStoped = false;
-      this.playVideo = `<iframe width="640" height="440" src="http://www.youtube.com/embed/${video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      this.playVideo = `<iframe width="640" height="440" src="//www.youtube.com/embed/${video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     },
     closeVideo: function() {
       this.isStoped = true;
