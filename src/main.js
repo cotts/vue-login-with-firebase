@@ -1,10 +1,14 @@
 import Vue from 'vue';
 import firebase from 'firebase';
+import Toaster from 'v-toaster';
+import 'v-toaster/dist/v-toaster.css';
 
 import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false;
+
+Vue.use(Toaster, { timeout: 3000 });
 
 let app;
 const config = {
