@@ -9,6 +9,7 @@ import Index from '@/components/Index';
 
 Vue.use(Router);
 
+/** configuring routes */
 const router = new Router({
   mode: 'history',
   routes: [
@@ -38,6 +39,7 @@ const router = new Router({
   ],
 });
 
+/** rule to check the auth state to redirect */
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser;
   const requiresAuth = to.matched.some(info => info.meta.requiresAuth);

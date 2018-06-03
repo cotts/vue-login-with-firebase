@@ -19,6 +19,7 @@ export default {
     };
   },
   methods: {
+    /** login function */
     signIn: function() {
       const that = this;
       firebase

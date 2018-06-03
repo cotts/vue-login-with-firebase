@@ -32,11 +32,16 @@ export default {
     };
   },
   methods: {
+    /** openVideo
+     * @param {String} video ID
+     * create a iframe and switch by css classes to show the video
+     */
     openVideo: function(video) {
       this.isSelected = true;
       this.isStoped = false;
       this.playVideo = `<iframe width="640" height="440" src="//www.youtube.com/embed/${video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     },
+    /** close video opened */
     closeVideo: function() {
       this.isStoped = true;
       this.isSelected = false;

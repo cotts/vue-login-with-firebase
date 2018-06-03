@@ -35,12 +35,14 @@ export default {
     };
   },
   methods: {
+    /** clear form method */
     clearForm: function() {
       this.nome = '';
       this.email = '';
       this.fone = '';
       this.password = '';
     },
+    /** Create a firebase user  */
     signUp: function() {
       const that = this;
       firebase
@@ -63,6 +65,7 @@ export default {
           err => that.$toaster.error('Erro ao Cadastrar Usuário')
         );
     },
+    /** validate form with stabilished params  */
     validateForm: function() {
       const pattern = new RegExp('@');
       this.nome === ''
@@ -90,6 +93,7 @@ export default {
         this.signUp();
       }
     },
+    /** go back in route */
     goBack: function() {
       this.$router.go(-1);
     },

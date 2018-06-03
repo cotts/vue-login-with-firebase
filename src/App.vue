@@ -33,6 +33,7 @@ export default {
     };
   },
   methods: {
+    /** logoff method  */
     logout: function() {
       const that = this;
       firebase
@@ -40,17 +41,20 @@ export default {
         .signOut()
         .then(() => that.$router.go('/'));
     },
+    /** change menu if logged in */
     switchMenu: function() {
       if (firebase.auth().currentUser) {
         this.userMenu = true;
       }
     },
   },
+  /** watch the scope to switch menu */
   watch: {
     $route(to, from) {
       this.switchMenu();
     },
   },
+  /** check if the value is true or false when the view is mounted */
   mounted() {
     this.switchMenu();
   },

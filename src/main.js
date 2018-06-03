@@ -11,6 +11,8 @@ Vue.config.productionTip = false;
 Vue.use(Toaster, { timeout: 3000 });
 
 let app;
+
+/** firebase config */
 const config = {
   apiKey: 'AIzaSyAdHLux_W_MbMyw_388kNIbb78d48hi324',
   authDomain: 'vue-login-with-firebase.firebaseapp.com',
@@ -20,7 +22,10 @@ const config = {
   messagingSenderId: '74051838231',
 };
 
+/** initialize firebase */
 firebase.initializeApp(config);
+
+/** check the status of auth to create the view */
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
