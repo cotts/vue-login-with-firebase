@@ -1,6 +1,6 @@
 > A SPA Login page with Vue.JS and Firebase
 
-Demo [Here](https://challenge-nith.netlify.com/)
+Demo [Here](https://videoinstructor.netlify.com/)
 
 ## Technologies
 
