@@ -5,8 +5,11 @@ Demo [Here](https://videoinstructor.netlify.com/)
 ## Technologies
 
 > Vue.JS
+
 > Vue-Router
+
 > Firebase
+
 > Bootstrap 4
 
 ## Build Setup
