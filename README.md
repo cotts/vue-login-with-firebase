@@ -1,10 +1,17 @@
-# vue-login-with-firebase
+> A SPA Login page with Vue.JS and Firebase
 
-> A Vue login page with firebase
+Demo [Here](https://challenge-nith.netlify.com/)
+
+## Technologies
+
+> Vue.JS
+> Vue-Router
+> Firebase
+> Bootstrap 4
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -17,5 +24,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
