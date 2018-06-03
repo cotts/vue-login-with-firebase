@@ -1,12 +1,18 @@
 <template>
   <div class="cadastro">
-    <p>Cadastro</p>
-    <input type="text" v-model="nome" placeholder="nome">
-    <input type="text" v-model="email" placeholder="e-mail">
-    <input type="text" v-model="fone" placeholder="elefone">
-    <input type="password" v-model="password" placeholder="password">
-    <button @click="signUp">Cadastrar</button>
-    <p>{{ mensagem }}</p>
+    <h2 class="titulo">Cadastro</h2>
+    <div class="dados form-group">
+      <input class="form-control" type="text" v-model="nome" placeholder="Digite aqui seu nome">
+      <div v-html="validateName"></div>
+      <input class="form-control" type="text" v-model="email" placeholder="Coloque seu e-mail">
+      <div v-html="validateMail"></div>
+      <input class="form-control" type="text" v-model="fone" placeholder="Telefone">
+      <div v-html="validatePhone"></div>
+      <input class="form-control" type="password" v-model="password" placeholder="Senha">
+      <div v-html="validatePass"></div>
+      <button class="btn-primary btn-lg btn-block" @click="validateForm">Cadastrar</button>
+
+    </div>
   </div>
 </template>
 <script>
@@ -21,6 +27,10 @@ export default {
       fone: '',
       password: '',
       mensagem: '',
+      validateName: '',
+      validateMail: '',
+      validatePhone: '',
+      validatePass: '',
     };
   },
   methods: {
@@ -35,20 +45,67 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(that.email, that.password)
-        .then(user => {
-          const profile = firebase.auth().currentUser;
-          profile
-            .updateProfile({
-              displayName: that.nome,
-              phoneNumber: that.fone,
-            })
-            .then(() => {
-              that.clearForm();
-              that.mensagem = 'Usuário Cadastrado';
-            });
-        }, err => (that.mensagem = 'Erro no cadastro'));
+        .then(
+          user => {
+            const profile = firebase.auth().currentUser;
+            profile
+              .updateProfile({
+                displayName: that.nome,
+                phoneNumber: that.fone,
+              })
+              .then(() => {
+                that.clearForm();
+                that.$toaster.success('Usuário Cadastrado');
+              });
+          },
+          err => that.$toaster.error('Erro ao Cadastrar Usuário')
+        );
+    },
+    validateForm: function() {
+      const pattern = new RegExp('@');
+      this.nome === ''
+        ? (this.validateName =
+            '<p class="alet alert-danger"> Nome de usuário é obrigatório<p>')
+        : (this.validateName = '');
+      !pattern.test(this.email)
+        ? (this.validateMail =
+            '<p class="alet alert-danger">Endereço de e-mail inválido<p>')
+        : (this.validateMail = '');
+      this.fone.length <= 4
+        ? (this.validatePhone =
+            '<p class="alet alert-danger">Telefone inválido<p>')
+        : (this.validatePhone = '');
+      this.password === ''
+        ? (this.validatePass =
+            '<p class="alet alert-danger">Senha é obrigatória<p>')
+        : (this.validatePass = '');
+      if (
+        this.validateName === '' &&
+        this.validateMail === '' &&
+        this.validatePhone === '' &&
+        this.validatePass === ''
+      ) {
+        this.signUp();
+      }
     },
   },
 };
 </script>
+<style scoped>
+.cadastro {
+  font-family: 'Sunflower', sans-serif;
+}
+.titulo {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.cadastro .dados {
+  width: 500px;
+  margin: 0 auto;
+}
+.dados input {
+  margin-bottom: 20px;
+}
+</style>
 
