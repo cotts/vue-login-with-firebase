@@ -26,9 +26,13 @@ const config = {
 firebase.initializeApp(config);
 
 /** check the status of auth to create the view */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>',
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      components: { App },
+      template: '<App/>',
+    });
+  }
 });
